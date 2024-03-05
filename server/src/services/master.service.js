@@ -3,6 +3,8 @@ const { Op } = require('sequelize');
 
 const logger = require('../config/logger');
 
+const configFile = require('./config')
+
 
 
 const insertMasterTable = async (data) => {
@@ -95,8 +97,10 @@ const insertMasterTable = async (data) => {
             },
             raw: true
         });
+
         if (!duplicate && !checkLaneId) {
             try {
+
                 const insert = await db.TBL_MASTER_TRANS.create(data1)
                 logger.info(`Inserted transaction ${insert.LANE_TRANS_ID}`);
             }
